@@ -167,33 +167,5 @@ public class FileOpener2 extends CordovaPlugin {
 	    }
 	    return mimeType;
 	}
-
-	private void _uninstall(String packageId, CallbackContext callbackContext) throws JSONException {
-		if (this._appIsInstalled(packageId)) {
-			Intent intent = new Intent(Intent.ACTION_UNINSTALL_PACKAGE);
-			intent.setData(Uri.parse("package:" + packageId));
-			cordova.getActivity().startActivity(intent);
-			callbackContext.success();
-		}
-		else {
-			JSONObject errorObj = new JSONObject();
-			errorObj.put("status", PluginResult.Status.ERROR.ordinal());
-			errorObj.put("message", "This package is not installed");
-			callbackContext.error(errorObj);
-		}
-	}
-
-	private boolean _appIsInstalled(String packageId) {
-		PackageManager pm = cordova.getActivity().getPackageManager();
-        boolean appInstalled = false;
-        try {
-            pm.getPackageInfo(packageId, PackageManager.GET_ACTIVITIES);
-            appInstalled = true;
-        } catch (PackageManager.NameNotFoundException e) {
-            appInstalled = false;
-        }
-        return appInstalled;
-	}
-
 }
 
