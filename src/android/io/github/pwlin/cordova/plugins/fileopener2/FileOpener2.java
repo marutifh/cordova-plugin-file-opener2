@@ -67,21 +67,6 @@ public class FileOpener2 extends CordovaPlugin {
 			}
 			this._open(fileUrl, contentType, openWithDefault, callbackContext);
 		}
-		else if (action.equals("uninstall")) {
-			this._uninstall(args.getString(0), callbackContext);
-		}
-		else if (action.equals("appIsInstalled")) {
-			JSONObject successObj = new JSONObject();
-			if (this._appIsInstalled(args.getString(0))) {
-				successObj.put("status", PluginResult.Status.OK.ordinal());
-				successObj.put("message", "Installed");
-			}
-			else {
-				successObj.put("status", PluginResult.Status.NO_RESULT.ordinal());
-				successObj.put("message", "Not installed");
-			}
-			callbackContext.success(successObj);
-		}
 		else {
 			JSONObject errorObj = new JSONObject();
 			errorObj.put("status", PluginResult.Status.INVALID_ACTION.ordinal());
